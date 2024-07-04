@@ -1,0 +1,301 @@
+@charset "UTF-8";
+
+* {margin: 0; padding: 0; box-sizing: border-box;}
+ul, ol, li {list-style: none;}
+a {text-decoration: none; color: #222;}
+
+/* clearfix */
+.clearfix {*zoom:1;}
+.clearfix:before, .clearfix:after {display:block; content: ''; line-height: 0;}
+.clearfix:after {clear: both;}
+
+.section {
+	width: 1040px;
+	margin: auto;
+	padding: 10px;
+}
+
+.pageNavi {
+	clear: both;
+	margin: 15px 0 15px 0;
+	padding: 5px 0 5px 0;
+}
+
+.paging {
+  width: 100%;
+  text-align: center;
+  height: 25px;
+}
+
+.paging a.arrow {
+  background-color: #fff;
+}
+
+.paging a {
+  display: inline-block;
+  height: 23px;
+  line-height: 22px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-decoration: none;
+  vertical-align: top;
+  overflow: hidden;
+  margin: 0 2px 0 2px;
+}
+
+.paging a.prev span {
+  background-position: -22px 8px;
+}
+
+.paging a.next span {
+  background-position: -348px 8px;
+}
+
+.paging a.arrow span {
+  background-image: url('../../images/paging_arrow.gif');
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  width: 23px;
+  padding: 0;
+}
+
+.paging a span {
+  display: block;
+  height: 23px;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: normal;
+  color: #555;
+  min-width: 8px;
+  padding: 0 8px 0 7px;
+  letter-spacing: -1px;
+}
+
+
+/* 광고 swiper */
+.swiper {
+  height: 100%;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.swiper .swiper-lazy {
+	height: 100%;
+	width: 100%;
+}
+
+.swiper .swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.6;
+}
+
+.swiper .swiper-pagination-bullet-active {
+  background-color: white;
+  opacity: 0.9;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+	
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after{
+  color: white; 
+  opacity: 0.6;
+}
+
+/* -------- 메인 페이지 -------- */
+
+#main-banner {
+	height: 400px;
+}
+
+#main-product {
+	height: 100%;
+}
+
+/* 2. 상품목록 */
+
+/* 2-1. 카테고리 */
+#cateArea {
+	width: 100%;
+	height: 200px;
+	margin: 50px 0 10px 0;
+}
+
+.cateListWrap {
+	height: 170px;
+	border-bottom: 1px solid #eee;
+}
+
+.cateListWrap .cateList {
+	height: 100%;
+	position: relative;
+}
+
+.cateListWrap .cateList li {
+	float: left;
+	height: 170px;
+	width: calc(16.66%);
+	margin: auto 0;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.cateListWrap .cateList li a .img {
+	overflow: hidden;
+	margin: 0 auto;
+  	width: 80px;
+  	height: 80px;
+  	border-radius: 50%;
+}
+
+.cateListWrap .cateList li a .img img {
+	width: 100%;
+	height: 100%;
+}
+
+.cateListWrap .cateList li:hover a .img {
+	 background-color: #f6f6f6;
+}
+
+.cateListWrap .cateList li.on a .img {
+	 background-color: #f6f6f6;
+}
+
+.cateListWrap .cateList li a p {
+	padding: 16px 8px; 
+	text-align: center;
+}
+
+.cateListWrap .cateList li:hover a p {
+	font-weight:bold;
+}
+
+.cateListWrap .cateList li.on a p {
+	font-weight:bold;
+}
+
+
+/* 2-2. 상품 */
+
+/* 탭 */
+
+.tabWrap {
+	width: 100%;
+	height: 25px;
+	margin: 30px 0 24px 0;
+	display: inline-block;  
+}
+
+.tabWrap .total {
+  float: left;
+	height: 100%;
+ 	line-height: 1.5;
+}
+
+.tabWrap .tab {
+	float: right;
+	height: 100%;
+ 	line-height: 1.4;
+}
+
+.tabWrap .tab span {
+	position: relative;
+	display: inline-block;
+	height: 100%;
+	padding: 0 15px;
+	cursor: pointer;
+	z-index: 1;
+}
+
+.tabWrap .tab span.on {
+	font-weight: bold;
+}
+
+.tabWrap .tab span:last-child {
+	padding-right: 0;
+}
+
+/* 목록 */
+
+#itemArea {
+	height: 100%;
+}
+
+.itemListWrap {
+	height: 100%;
+}
+
+.itemList {
+	height: 100%;
+}
+
+.itemList li {
+  	display: inline-block;
+  	float: left;
+  	text-align: left;
+  	width: calc(25% - 10px);
+  	height: 100%;
+  	margin-right: 13px;
+}
+
+.itemList li:nth-child(4n) {
+	margin-right: 0px;
+}
+
+.itemList li .item_img {
+	position:relative;
+  	width: 100%;
+  	height: 245px;
+  	overflow: hidden;
+  	border-radius: 18px;
+}
+
+.itemList li .item_img::before {
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #000;
+  opacity: .04;
+}
+
+.itemList li .item_img img {
+	width: 100%;
+  	height: auto;
+}
+
+.itemList li .txtWrap {
+ 	width: 100%;
+  	height: 156px;
+  	margin-top: 12px;
+}
+
+.itemList li .txtWrap .brandNm {
+  	display: inline-block;
+  	width: 100%;
+  	height: 25px;
+  	margin-bottom: 4px;
+  	font-size: 16px;
+  	font-weight: bold;
+}
+
+.itemList li .txtWrap .price {
+  	display: inline-block;
+  	width: 100%;
+  	height: 25px;
+  	font-size: 20px;
+  	font-weight: bold;
+}
+
+.itemNm {
+  	width: 100%;
+  	height: 45px;
+}
