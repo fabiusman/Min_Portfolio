@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.board.mapper.pMemberMapper">
+
+<!-- crud -->
+<insert id="insert" parameterType="PMemberVO">
+	INSERT INTO pMember(id, name, password, email)
+	VALUES(pMember_seq.nextVal, #{name}, #{password}, #{email})
+</insert>
+
+<select id="read" parameterType="PMemberVO" resultType="PMemberVO">
+	SELECT * FROM pMember WHERE name=#{name} and password=#{password}
+</select>
+
+<select id="list" resultType="PMemberVO">
+	SELECT * FROM pMember
+</select>
+
+<update id="update" parameterType="PMemberVO">
+	UPDATE pMember SET password=#{password}
+	WHERE name=#{name}
+</update>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM pMember WHERE id=#{id}
+</delete>
+
+<!-- 추가 -->
+<select id="readByName" parameterType="String" resultType="PMemberVO">
+	SELECT * FROM pMember WHERE email=#{email}
+</select>
+
+</mapper>

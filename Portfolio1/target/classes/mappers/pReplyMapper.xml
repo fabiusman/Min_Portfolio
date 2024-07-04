@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.board.mapper.pReplyMapper">
+
+<!-- crud -->
+<insert id="insert" parameterType="PReplyVO">
+	INSERT INTO pReply(id, writer, content, post_id)
+	VALUES(pReply_seq.nextVal, #{writer}, #{content}, #{post_id})
+</insert>
+
+<select id="read" parameterType="int" resultType="PReplyVO">
+	SELECT * FROM pReply WHERE id=#{id}
+</select>
+
+<select id="list" parameterType="int" resultType="PReplyVO">
+	SELECT * FROM pReply
+	WHERE post_id=#{post_id}
+	ORDER BY id desc
+</select>
+
+<update id="update" parameterType="PReplyVO">
+	UPDATE pReply SET content=#{content}
+	WHERE id=#{id}
+</update>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM pReply WHERE id=#{id}
+</delete>
+
+</mapper>

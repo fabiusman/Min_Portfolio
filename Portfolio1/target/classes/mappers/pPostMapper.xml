@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.board.mapper.pPostMapper">
+
+<!-- crud -->
+<insert id="insert" parameterType="PPostVO">
+	INSERT INTO pPost(id, title, writer, content, hits)
+	VALUES(pPost_seq.nextVal, #{title}, #{writer}, #{content}, #{hits})
+</insert>
+
+<select id="read" parameterType="int" resultType="PPostVO">
+	SELECT * FROM pPost WHERE id=#{id}
+</select>
+
+<select id="list" resultType="PPostVO">
+	SELECT * FROM pPost
+	ORDER BY id desc
+</select>
+
+<update id="update" parameterType="PPostVO">
+	UPDATE pPost SET title=#{title}, content=#{content}
+	WHERE id=#{id}
+</update>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM pPost WHERE id=#{id}
+</delete>
+
+<!-- 추가 -->
+<!-- 조회수 -->
+<update id="hitsUpdate">
+	UPDATE pPost SET hits=#{hits}
+	WHERE id=#{id}
+</update>
+
+<!-- 페이징, 검색 -->
+<select id="listPaging" parameterType="Criteria" resultType="PPostVO">
+SELECT id, title, writer, content, hits 
+	FROM (SELECT id, title, writer, content, hits, 
+		row_number() over(ORDER BY id desc) AS rNum FROM pPost) p
+WHERE rNum BETWEEN #{rowStart} AND #{rowEnd} ORDER BY id desc
+</select>
+
+<select id="listSearch" parameterType="SearchCriteria" resultType="PPostVO">
+SELECT id, title, writer, content, hits 
+	FROM (SELECT id, title, writer, content, hits, 
+		row_number() over(ORDER BY id desc) AS rNum FROM pPost
+			<include refid="search"></include>) p
+WHERE rNum BETWEEN #{rowStart} AND #{rowEnd} ORDER BY id desc
+</select>
+
+<sql id="search">
+	<if test="searchType != null">
+		<if test="searchType == 't'.toString()">WHERE title LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'c'.toString()">WHERE content LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'w'.toString()">WHERE writer LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'tc'.toString()">WHERE (title LIKE '%' || #{keyword} || '%') OR 
+	(content LIKE '%' || #{keyword} || '%')</if>
+	</if>
+</sql>
+
+<!-- 게시물 총 개수 -->
+<select id="totalRow" resultType="int">
+	select count(*) from pPost
+</select>
+
+
+</mapper>
